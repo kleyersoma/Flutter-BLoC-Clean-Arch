@@ -1,68 +1,63 @@
-# Flutter Bloc Clean Architecture Boilerplate
+# Flutter Clean Architecture Bloc News App
 
-This is a Flutter project boilerplate that adheres to the principles of Clean Architecture. It is designed to help you jumpstart your Flutter projects by providing a structured and organized project setup. This boilerplate utilizes the BLoC state management pattern, GetIt for dependency injection, and Freezed for code generation.
+This Flutter application follows the Clean Architecture principles and utilizes the Bloc pattern for state management. The app fetches daily news from the News API, displays them, and provides the option to save news articles to a local SQLite database.
 
-## Project Structure
+## Architecture Overview
 
-The project follows a well-defined directory structure to keep your code organized and maintainable. Here's an overview of the key directories:
+The project follows the Clean Architecture principles, separating the app into different layers:
 
-- **Src**: The main source code directory.
+- **Presentation Layer**: Contains the Flutter widgets, Blocs, and UI-related logic.
+- **Domain Layer**: Contains business logic and use cases.
+- **Data Layer**: Manages data sources such as APIs and local databases.
 
-    - **Common**: Contains common files such as API endpoints, constants, exceptions, colors, screen sizes, and enums.
+## State Management
 
-    - **Data**: Responsible for data handling.
+The app uses the Bloc pattern for state management. Blocs are responsible for managing the application's state and business logic.
 
-        - **Datasource**: Data sources, such as API clients or databases.
+## Service Locator
 
-        - **Model**: Data models that represent your application's data.
+The `get_it` package is used as a service locator for dependency injection. It helps manage the app's dependencies in a clean and organized way.
 
-        - **Repository**: Data repositories, which abstract the data source.
+## API Requests
 
-    - **Domain**: Contains the core business logic.
+Retrofit is used for making API requests to the News API. It provides a type-safe way to interact with RESTful APIs.
 
-        - **Entity**: Business entities or domain models.
+## Dart Object Comparison
 
-        - **Repository**: Interfaces that define how data is accessed in the domain layer.
+The `equatable` package is employed for efficient comparison of Dart objects. This is particularly useful when working with Blocs and state changes.
 
-        - **Usecase**: Use cases that represent the application's business operations.
+## Local Database
 
-    - **Presentation**: Handles the user interface and interaction.
-
-        - **Bloc**: BLoC classes responsible for managing the state of your application.
-
-        - **Cubit**: Cubit classes for more lightweight state management.
-
-        - **Page**: Flutter pages/screens.
-
-        - **Widget**: Reusable UI components.
-
-    - **Utilities**: Helper classes and utilities for the application.
-
-- **Injection.dart**: Dependency injection setup using GetIt.
-
-- **Main.dart**: The entry point of the Flutter application.
+The app uses the Floor library to interact with a local SQLite database. News articles can be saved to the local database for offline access.
 
 ## Getting Started
 
-1. Clone this repository to your local machine:
+1. Clone the repository:
 
-   ```shell
-   git clone https://github.com/ishitgami/flutter-bloc-clean-architecture-boilerplate
+   ```bash
+   git clone https://github.com/yunus6116/Flutter-Bloc-Clean-Architecture.git
 
 2. Navigate to the project directory:
+    ```bash
+    cd your-repo
+3. Add your News API key:
+   <br>
+   Open the lib/core/constants/constants.dart file and locate the newsAPIKey variable. Replace 'your_api_key_here' with your actual News API key. If you don't have an API key, you can obtain one by signing up on the News API website.
+   <br>
+   <br>
+   // lib/core/constants/constants.dart
+   <br>
+   const String newsAPIKey = 'your_actual_api_key';
+   <br>
+   <br>
+   Note: Keep your API key secure and do not share it publicly. Consider using environment variables or other secure methods to manage sensitive information in a production environment.
 
-   ```shell
-   cd flutter-bloc-clean-architecture-boilerplate
+5. Install dependencies:
+   
+   ```bash
+   flutter pub get
 
-3. Install dependencies using Flutter's package manager:
-
-   ```shell
-    flutter pub get
-
-## Features
-- Structured and organized project setup.
-- Clean Architecture pattern.
-- BLoC state management.
-- GetIt for dependency injection.
-- Freezed for code generation.
-
+6. Run the app:
+   
+   ```bash
+   flutter run
